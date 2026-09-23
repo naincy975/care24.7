@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../state/customer_search_state.dart';
 import '../models/customer.dart';
+import 'customer_detail_screen.dart';
 
 class CustomerResultsScreen extends StatelessWidget {
   const CustomerResultsScreen({super.key});
@@ -77,7 +78,12 @@ class _CustomerListItem extends StatelessWidget {
       ),
       isThreeLine: true,
       onTap: () {
-        // navigation to detail screen comes later
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CustomerDetailScreen(customer: customer),
+          ),
+        );
       },
     );
   }

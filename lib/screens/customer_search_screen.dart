@@ -81,20 +81,9 @@ class _CustomerSearchScreenState extends State<CustomerSearchScreen> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
-                      final criteria = <String, String>{};
-                      for (final entry in _controllers.entries) {
-                        criteria[entry.key] = entry.value.text;
+                      for (final controller in _controllers.values) {
+                        controller.clear();
                       }
-
-                      final state = context.read<CustomerSearchState>();
-                      state.search(criteria);
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CustomerResultsScreen(),
-                        ),
-                      );
                     },
                     child: const Text('Clear'),
                   ),
