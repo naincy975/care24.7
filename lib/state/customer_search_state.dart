@@ -7,17 +7,20 @@ enum SearchStatus { initial, loading, success, empty, error }
 
 class CustomerSearchState extends ChangeNotifier {
   final CustomerApi _api = CustomerApi();
+
   SearchStatus status = SearchStatus.initial;
-
   List<Customer> results = [];
-  String errMsg = '';
+  String errorMessage = '';
+  Map<String, String> _lastCriteria = {};
 
-  Future<void> search() async {
+  Future<void> search(Map<String, String> criteria) async {
+    _lastCriteria = criteria;
     status = SearchStatus.loading;
     notifyListeners();
 
     try {
-      final customers = await _api.fetchCustomers();
+      final customers = await _api.fetchCustomers(criteria);
+
       if (customers.isEmpty) {
         status = SearchStatus.empty;
       } else {
@@ -26,10 +29,14 @@ class CustomerSearchState extends ChangeNotifier {
       }
     } catch (e) {
       results = [];
-      errMsg = 'Something went wrong. Please try again.';
+      errorMessage = 'Something went wrong. Please try again.';
       status = SearchStatus.error;
-      print('SEARCH ERROR: $e');
     }
+
     notifyListeners();
+  }
+
+  Future<void> retry() async {
+    await search(_lastCriteria);
   }
 }

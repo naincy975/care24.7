@@ -7,8 +7,17 @@ import '../models/customer.dart';
 class CustomerApi {
   static const String baseUrl = 'http://localhost:3001';
 
-  Future<List<Customer>> fetchCustomers() async {
-    final response = await http.get(Uri.parse('$baseUrl/customers'));
+  Future<List<Customer>> fetchCustomers(Map<String, String> criteria) async {
+    final queryParams = <String, String>{};
+    criteria.forEach((key, value) {
+      if (value.trim().isNotEmpty) {
+        queryParams[key] = value.trim();
+      }
+    });
+
+    final uri = Uri.parse('$baseUrl/customers')
+        .replace(queryParameters: queryParams);
+    final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonList = jsonDecode(response.body);

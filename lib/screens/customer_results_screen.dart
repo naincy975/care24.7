@@ -33,10 +33,10 @@ class CustomerResultsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(state.errMsg),
+              Text(state.errorMessage),
               const SizedBox(height: 12),
               ElevatedButton(
-                onPressed: () => state.search(),
+                onPressed: () => state.retry(),
                 child: const Text('Retry'),
               ),
             ],
@@ -45,7 +45,7 @@ class CustomerResultsScreen extends StatelessWidget {
 
       case SearchStatus.success:
         return RefreshIndicator(
-          onRefresh: () => state.search(),
+          onRefresh: () => state.retry(),
           child: ListView.builder(
             itemCount: state.results.length,
             itemBuilder: (context, index) {

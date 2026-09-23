@@ -59,8 +59,14 @@ class _CustomerSearchScreenState extends State<CustomerSearchScreen> {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
+                      final criteria = <String, String>{};
+                      for (final entry in _controllers.entries) {
+                        criteria[entry.key] = entry.value.text;
+                      }
+
                       final state = context.read<CustomerSearchState>();
-                      state.search();
+                      state.search(criteria);
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -75,8 +81,14 @@ class _CustomerSearchScreenState extends State<CustomerSearchScreen> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
+                      final criteria = <String, String>{};
+                      for (final entry in _controllers.entries) {
+                        criteria[entry.key] = entry.value.text;
+                      }
+
                       final state = context.read<CustomerSearchState>();
-                      state.search();
+                      state.search(criteria);
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
