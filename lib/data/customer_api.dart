@@ -17,7 +17,14 @@ class CustomerApi {
 
     final uri = Uri.parse('$baseUrl/customers')
         .replace(queryParameters: queryParams);
-    final response = await http.get(uri);
+    final response = await http
+        .get(uri)
+        .timeout(
+          const Duration(seconds: 10),
+          onTimeout: () {
+            throw Exception('Request timed out. Please check your connection.');
+          },
+        );
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonList = jsonDecode(response.body);
