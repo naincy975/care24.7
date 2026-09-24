@@ -40,11 +40,11 @@ The project follows a layered structure, separating concerns into distinct folde
 
 
 ## Time Spent
-Day 1 (21st Sep): 2 hours
-Day 2 (22nd Sep): 4 hours
-Day 3 (23rd Sep): 3 hours
-Day 4 (24th Sep): 3.75 hours
-Day 5 (25th Sep): 
+- **`Day 1 (21st Sep)`** : 2 hours
+- **`Day 2 (22nd Sep)`** : 4 hours
+- **`Day 3 (23rd Sep)`** : 3 hours
+- **`Day 4 (24th Sep)`** : 3.75 hours
+- **`Day 5 (25th Sep)`**: 
 
 **Total: ~12.75 hours**, including learning Flutter/Dart fundamentals from no prior experience with the framework. 
 
